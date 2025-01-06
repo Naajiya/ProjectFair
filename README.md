@@ -142,3 +142,18 @@ Multer
         -install multer using the command npm i router
         -import multer in js file
         -create 'uplaod' folder in server folder for stroring uplaod files
+
+
+-data sharing between components in react 
+    -state lifting: lifting a state to its parent , such that it can share between its child, using props
+    -redux : to avoid props drilling while sharing the data across different components, avoid props driling
+    -context api : use context to share data between different components, avoid props drilling
+
+-Context api - data sharing technique in react
+-----------------------------------------------
+-providing a centralized way to change state across components
+-share a specific info:(like state or function) with multiple components , without props without 
+-steps:
+    -creating a context : creating a context using the createContext() method
+    -providing the context : use provider of context. so that it helps to providee data to components
+    -consuming context : to use/access data shared using context api use 'useContext()' hook

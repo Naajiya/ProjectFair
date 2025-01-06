@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -8,10 +8,14 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { toast, ToastContainer } from 'react-toastify';
 import { addProject } from '../../Services/allApi';
+import { addResponseContext } from '../context/ContextApi';
+
 
 
 
 function Add() {
+
+  const {addResponse,setAddResponse}=useContext(addResponseContext) 
 
   const [show, setShow] = useState(false);
 
@@ -47,6 +51,8 @@ function Add() {
 
     if(title && language && github && link && overview && prjctImg){
 
+      // handle image
+
       // create formdata with object rqbdy
 
       const reqBody=new FormData()
@@ -76,6 +82,8 @@ function Add() {
           if(result.status==200){
             toast.success("project successfully added")
             handleClose()
+            setAddResponse(result.data)
+
           }else{
             toast.error(result.response.data)
           }

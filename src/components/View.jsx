@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Col, Row, ToastContainer } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Add from './Add'
@@ -7,9 +7,12 @@ import Edit from './Edit'
 import { getUserProject } from '../../Services/allApi';
 import { toast } from 'react-toastify';
 import CardItems from '../components/CardItems'
+import { addResponseContext } from '../context/ContextApi';
 
 
 function View() {
+
+  const {addResponse,setAddResponse}=useContext(addResponseContext) //destructuring
 
   const [userProject,setUserProject]=useState()
   console.log('userproject')
@@ -18,7 +21,7 @@ function View() {
 
   useEffect(() => {
       getUserProjectss()
-    }, [])
+    }, [addResponse])
   
   
   
@@ -77,7 +80,16 @@ function View() {
           </div>
           <div className='d-flex w-50 justify-content-between '>
             <div>
-              <Edit />
+
+            {
+              userProject?.map(project => (
+
+                <Edit project={project} />
+              ))
+            }
+
+            
+
             </div >
             <div className='mt-2'>
             <i class="fa-brands fa-github"></i>
