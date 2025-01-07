@@ -3,14 +3,21 @@ import React, { createContext, useState } from 'react'
 // create contxt
 export const addResponseContext = createContext()
 
+export const editResponseContext = createContext()
+
 function ContextApi({ children }) {
 
     const [addResponse, setAddResponse] = useState('')
+    const [editResponse, setEditResponse] = useState('')
 
     return (
         <>
             <addResponseContext.Provider value={{ addResponse, setAddResponse }}>
-                {children}
+
+                <editResponseContext.Provider value={{ editResponse, setEditResponse }}>
+                    {children}
+                </editResponseContext.Provider>
+
             </addResponseContext.Provider>
         </>
     )

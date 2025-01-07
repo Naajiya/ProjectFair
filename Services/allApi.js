@@ -29,3 +29,7 @@ export const getAllProject = async (reqHeader) => {
 export const getUserProject = async (reqHeader) => {
   return await commonApi("GET", `${SERVER_URL}/get-user-project`,"", reqHeader)
 };
+
+export const editProjectApi = async (pid,reqBody,reqHeader)=>{
+  return await commonApi("PUT", `${SERVER_URL}/edit-project/${pid}`, reqBody, reqHeader)
+}
