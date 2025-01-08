@@ -1,12 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
 import avatar from '../assets/avatar.png'
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 
+
+
 function Profile() {
+
+    const [userDetails,setUserDetails]=useState({username:'',email:'',pssword:'',github:'',linkedin:'',Profile:''})
+    const [existingImg,setExistingImg]=useState()
     const [open, setOpen] = useState(false);
+
+
+    useEffect(()=>{
+        if(sessionStorage.getItem("user")){
+            const existingUser = JSON.parse(sessionStorage.getItem("user"))
+            setUserDetails({...userDetails,username:existingUser?.username, email:existingUser?.email, password:existingUser?.password, github:existingUser?.github, linkedin:existingUser?.linkedin})
+            setExistingImg(existingUser?.profile)
+        }
+    },[])
 
     return (
         <>

@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Add from './Add'
 // import Table from 'react-bootstrap/Table';
 import Edit from './Edit'
-import { getUserProject } from '../../Services/allApi';
+import { deleteProject, getUserProject } from '../../Services/allApi';
 import { toast } from 'react-toastify';
 import CardItems from '../components/CardItems'
 import { addResponseContext, editResponseContext } from '../context/ContextApi';
@@ -14,7 +14,7 @@ import { addResponseContext, editResponseContext } from '../context/ContextApi';
 function View() {
 
   const { addResponse, setAddResponse } = useContext(addResponseContext) //destructuring
-  const {editResponse,setEditResponse}=useContext(editResponseContext)
+  const { editResponse, setEditResponse } = useContext(editResponseContext)
 
   const [userProject, setUserProject] = useState()
   console.log('userproject')
@@ -22,13 +22,14 @@ function View() {
 
 
   useEffect(() => {
-    getUserProjectss()
-  }, [addResponse,editResponse])
+    getUserProjectView()
+  }, [addResponse, editResponse])
 
 
 
 
-  const getUserProjectss = async () => {
+  const getUserProjectView = async () => {
+    
 
     const token = sessionStorage.getItem("token")
 
@@ -53,6 +54,31 @@ function View() {
 
       } catch (err) {
         // console.log(err)
+      }
+    }
+  }
+
+
+
+  const handleDelete = async (pid) => {
+    
+
+    const token = sessionStorage.getItem("token")
+
+    if (token) {
+      const reqHeader = {
+        "Content-Type": "multipart/form-data",
+        "Authorization": `Beror ${token}`
+      }
+
+
+      try {
+        const result = await deleteProject(pid, reqHeader)
+        if (result.status == 200) {
+          getUserProjectView()
+        }
+      } catch (err) {
+        console.log(err)
       }
     }
   }
@@ -100,7 +126,7 @@ function View() {
                   <i class="fa-brands fa-github"></i>
                 </div>
                 <div className='mt-2'>
-                  <i class="fa-solid fa-trash "></i>
+                  <i onClick={() => handleDelete(project?._id)} class="fa-solid fa-trash "></i>
                 </div>
               </div>
 

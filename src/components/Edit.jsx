@@ -26,8 +26,15 @@ function Edit({ project }) {
 
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => {
+    setShow(false)
+    setProjectDetails({id: project?._id, title: project?.title, language: project?.language, github: project?.github, link: project?.link, overview: project?.overview, prjctImg: "" })
+  };
+  const handleShow = () =>{ 
+    setShow(true)
+    setProjectDetails({id: project?._id, title: project?.title, language: project?.language, github: project?.github, link: project?.link, overview: project?.overview, prjctImg: "" })
+
+  };
 
 
 

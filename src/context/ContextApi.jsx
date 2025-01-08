@@ -15,7 +15,9 @@ function ContextApi({ children }) {
             <addResponseContext.Provider value={{ addResponse, setAddResponse }}>
 
                 <editResponseContext.Provider value={{ editResponse, setEditResponse }}>
+
                     {children}
+
                 </editResponseContext.Provider>
 
             </addResponseContext.Provider>

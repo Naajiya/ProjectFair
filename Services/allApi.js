@@ -21,15 +21,27 @@ export const getHomeProject = async () => {
   return await commonApi("GET", `${SERVER_URL}/home-project`,"")
 };
 
+// get all project
 export const getAllProject = async (reqHeader) => {
   return await commonApi("GET", `${SERVER_URL}/get-all-project`,"",reqHeader)
 };
 
-
+// get project by usesr
 export const getUserProject = async (reqHeader) => {
   return await commonApi("GET", `${SERVER_URL}/get-user-project`,"", reqHeader)
 };
 
+// update project
 export const editProjectApi = async (pid,reqBody,reqHeader)=>{
   return await commonApi("PUT", `${SERVER_URL}/edit-project/${pid}`, reqBody, reqHeader)
+}
+
+// delete project
+export const deleteProject = async (pid,reqHeader)=>{
+  return await commonApi("DELETE",`${SERVER_URL}/delete-project/${pid}`,{},reqHeader)
+}
+
+// update profile={}
+export const updateProfile = async (reqHeader,reqBody)=>{
+  return await commonApi("PUT",`${SERVER_URL}/edit-profile`,reqHeader,reqBody) 
 }
