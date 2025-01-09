@@ -23,8 +23,8 @@ function CardItems({ proj }) {
     <>
       <Row>
 
-        <Col>
-          <Card style={{ width: '18rem' }} onClick={handleShow} className='m-3 shadow'>
+        <Col lg={4} className='m-2'>
+          <Card style={{ width: '16rem' }} onClick={handleShow} className='m-3 shadow'>
             <Card.Img className='img-fluid' style={{ height: '300px' }} variant="top" src={`${SERVER_URL}/uploads/${proj.prjctImg}`} />
             <Card.Body>
               <Card.Title>{proj.title}</Card.Title>

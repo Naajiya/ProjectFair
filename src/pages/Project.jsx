@@ -53,18 +53,24 @@ function Project() {
   return (
     <>
       <div>
-        <div className='d-flex'>
+
+        <div className='text-center d-flex flex-column justify-content-center align-items-center'>
+          <h2>All PROJECTS</h2>
+          <input type="text" placeholder='search projects by langauage' className='w-50 form-control m-3' />
+        </div>
+
+        <div className='d-flex flex-wrap '>
 
 
 
           {
-            allProject?.length>0 &&
-              allProject.map(proj=>(
-                <CardItems proj={proj} />
-              ))
-              
+            allProject?.length > 0 &&
+            allProject.map(proj => (
+              <CardItems proj={proj} />
+            ))
 
-}
+
+          }
 
 
         </div>

@@ -195,7 +195,7 @@ function Edit({ project }) {
           {/* <Button variant="secondary" onClick={handleClose}>
               Close
             </Button> */}
-          <Button onClick={handleUpdate} variant="success">Add</Button>
+          <Button onClick={handleUpdate} variant="success">edit</Button>
         </Modal.Footer>
       </Modal>
     </>
