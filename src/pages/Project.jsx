@@ -4,6 +4,7 @@ import { Col, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import CardItems from '../components/CardItems';
+import { toast, ToastContainer } from 'react-toastify';
 
 
 
@@ -11,12 +12,15 @@ import CardItems from '../components/CardItems';
 
 function Project() {
 
+  const [searchkey,setSearchKey]=useState("")
+  console.log(searchkey)
+
   const [allProject, setAllProject] = useState()
   console.log(allProject)
 
   useEffect(() => {
     getAllProjects()
-  }, [])
+  }, [searchkey])
 
 
 
@@ -34,7 +38,7 @@ function Project() {
 
       try {
 
-        const result = await getAllProject(reqHeader)
+        const result = await getAllProject(searchkey,reqHeader)
         console.log(result);
 
         if (result.status == 200) {
@@ -56,7 +60,7 @@ function Project() {
 
         <div className='text-center d-flex flex-column justify-content-center align-items-center'>
           <h2>All PROJECTS</h2>
-          <input type="text" placeholder='search projects by langauage' className='w-50 form-control m-3' />
+          <input onChange={(e)=>setSearchKey(e.target.value)} type="text" placeholder='Search projects by langauage' className='w-50 form-control m-3' />
         </div>
 
         <div className='d-flex flex-wrap '>

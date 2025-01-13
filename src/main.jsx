@@ -5,16 +5,20 @@ import App from './App.jsx'
 import './bootstrap.min.css'
 import { BrowserRouter } from 'react-router-dom'
 import ContextApi from './context/ContextApi.jsx'
+import AuthContext from './context/AuthContext.jsx'
 
 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <ContextApi>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ContextApi>
 
+  <StrictMode>
+    <AuthContext>
+      <ContextApi>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ContextApi>
+    </AuthContext>
   </StrictMode>,
+
 )

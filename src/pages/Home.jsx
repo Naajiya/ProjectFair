@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button';
 import projectImg from '../assets/project.png'
@@ -14,6 +14,8 @@ import { toast } from 'react-toastify';
 
 
 function Home() {
+
+ 
 
   const navigate = useNavigate()
 
@@ -66,7 +68,7 @@ function Home() {
                     <Link to={'/login'}><Button variant="success">Start to Explore</Button></Link>
                 }
 
-              </div>
+              </div>  
             </Col>
             <Col>
               <div className='justify-content-start' style={{ height: '100%', width: '100%' }}>

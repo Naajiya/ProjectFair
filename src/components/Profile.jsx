@@ -23,7 +23,7 @@ function Profile() {
             setUserDetails({ ...userDetails, username: existingUser?.username, email: existingUser?.email, password: existingUser?.password, github: existingUser?.github, linkedin: existingUser?.linkedin })
             setExistingImg(existingUser?.profile)
         }
-    }, [opena])
+    }, [open])
 
     // when user update profile pic
     useEffect(()=>{

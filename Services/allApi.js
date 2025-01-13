@@ -22,8 +22,10 @@ export const getHomeProject = async () => {
 };
 
 // get all project
-export const getAllProject = async (reqHeader) => {
-  return await commonApi("GET", `${SERVER_URL}/get-all-project`,"",reqHeader)
+// query parameter
+// in backend it fetch by req.query.search
+export const getAllProject = async (searchkey,reqHeader) => {
+  return await commonApi("GET", `${SERVER_URL}/get-all-project?search=${searchkey}`,"",reqHeader)
 };
 
 // get project by usesr

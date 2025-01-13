@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import autherImg from '../assets/auther2.png'
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -7,14 +7,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { loginApi, registerApi } from '../../Services/allApi';
 import Spinner from 'react-bootstrap/Spinner';
-
-
-
+import {AuthenticationContext} from '../context/AuthContext';
 
 
 
 
 function Auth({ insideRegister }) {
+
+   const {isAuthorizes,setIsAuthorizes}=useContext(AuthenticationContext)
+
   const navigate = useNavigate()
 
   const [userDetails, setUserDetails] = useState({ username: "", email: "", password: "" })
@@ -35,6 +36,7 @@ function Auth({ insideRegister }) {
         if (result.status == 200) {
           toast.success(`welcome ${result?.username}...please login to explore our website`)
           setUserDetails({ username: "", email: "", password: "" })
+         
           navigate('/login')
         } else {
           if (result.status == 400) {
@@ -67,6 +69,7 @@ function Auth({ insideRegister }) {
           // to store user and token details to sessionstorage (when the tab close it empty)
           sessionStorage.setItem("user", JSON.stringify(result.data.user))
           sessionStorage.setItem("token", result.data.token)
+          setIsAuthorizes(true)
           setIsLogin(true)
 
           // only redirect to home after 500 seconds 
